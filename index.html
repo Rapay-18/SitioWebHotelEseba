@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Hotel Eseba - Experiencia de lujo y hospitalidad excepcional en Honduras. Habitaciones elegantes, servicios premium y ubicación privilegiada.">
+    <meta name="keywords" content="hotel Honduras, alojamiento lujo, habitaciones premium, turismo Honduras, Hotel Eseba">
+    <title>Hotel Eseba - Bienvenidos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        /* Header y Navegación */
+        header {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: #f39c12;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+            background-color: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            background-color: #f39c12;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 80%;
+            left: 10%;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Sección Hero */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), 
+                        url('https://wallpapers.com/images/featured/hotel-zihfjeexztyh1t0n.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 80px;
+            position: relative;
+        }
+        .tex{
+            border-radius: 15px;
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            line-height: 1.8;
+            font-style: italic;
+            background-color: #bdc3c71b;
+            color: rgb(255, 255, 255);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(243, 156, 18, 0.1), rgba(52, 73, 94, 0.1));
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.7);
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            line-height: 1.8;
+            font-style: italic;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            color: white;
+            padding: 1.2rem 2.5rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+            box-shadow: 0 6px 20px rgba(243, 156, 18, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #e67e22, #d35400);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(243, 156, 18, 0.6);
+        }
+
+        /* Sección Bienvenida mejorada */
+        .bienvenida {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #ffffff, #f8f9fa);
+            position: relative;
+        }
+
+        .bienvenida::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #f39c12, #e67e22, #f39c12);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.3rem;
+            color: #7f8c8d;
+            margin-bottom: 4rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            font-style: italic;
+            line-height: 1.8;
+        }
+
+        .welcome-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .welcome-text {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: #555;
+        }
+
+        .welcome-text p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .welcome-text p:first-child {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .welcome-image {
+            text-align: center;
+            position: relative;
+        }
+
+        .hotel-image {
+            width: 100%;
+            max-width: 450px;
+            height: 350px;
+            background: 
+                        url('https://www.hotel-marquesdepombal.pt/uploads/cms_apps/imagenes/1-_Acorde_com_a_melhor_vista.png');
+            
+            background-size: cover;
+            background-position: center;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.3rem;
+            margin: 0 auto;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .hotel-image:hover {
+            transform: scale(1.05);
+        }
+
+        .hotel-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(243, 156, 18, 0.2), rgba(52, 73, 94, 0.2));
+        }
+
+        /* Servicios*/
+        .services {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #ecf0f1, #bdc3c7);
+            position: relative;
+        }
+
+        .services::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #e67e22, #f39c12, #e67e22);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #f39c12, #e67e22);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover::before {
+            transform: translateX(0);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+        }
+
+        .service-icon {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: white;
+            font-size: 2.2rem;
+            box-shadow: 0 8px 20px rgba(243, 156, 18, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 12px 30px rgba(243, 156, 18, 0.4);
+        }
+
+        .service-card h3 {
+            color: #2c3e50;
+            margin-bottom: 1.2rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .service-card p {
+            color: #7f8c8d;
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        /* Sección de estadísticas nueva */
+        .stats {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            padding: 2rem;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #f39c12;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Footer*/
+        footer {
+            background: linear-gradient(135deg, #1a252f, #2c3e50);
+            color: white;
+            padding: 4rem 0 2rem;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #f39c12, #e67e22, #f39c12);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            color: #f39c12;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .footer-section p, .footer-section li {
+            color: #bdc3c7;
+            line-height: 1.8;
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 0.3rem 0;
+            display: inline-block;
+        }
+
+        .footer-section a:hover {
+            color: #f39c12;
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 2px solid #34495e;
+            color: #95a5a6;
+            font-size: 0.9rem;
+        }
+
+        /* Elementos decorativos */
+        .decorative-line {
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #f39c12, #e67e22);
+            margin: 2rem auto;
+            border-radius: 2px;
+        }
+
+        /* Responsividad */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: linear-gradient(135deg, #2c3e50, #34495e);
+                flex-direction: column;
+                padding: 1rem 0;
+                gap: 0;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            nav li {
+                padding: 0.8rem 2rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .header-container {
+                padding: 0 1rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .welcome-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero {
+                background-attachment: scroll;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .btn-primary {
+                padding: 1rem 1.8rem;
+                font-size: 1rem;
+            }
+
+            .service-card {
+                padding: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animaciones suaves */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .service-card,
+        .welcome-text,
+        .welcome-image {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        
+        :focus {
+            outline: 2px solid #f39c12;
+            outline-offset: 2px;
+        }
+
+        
+        .logo:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">Hotel Eseba</div>
+            <nav>
+                <button class="menu-toggle" onclick="toggleMenu()" aria-label="Abrir menú de navegación">☰</button>
+                <ul id="navMenu">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="habitaciones.html">Habitaciones</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="galeria.html">Galería</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Sección Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Bienvenidos al Hotel Eseba</h1>
+            <p class="tex">Experimenta la perfecta combinación de lujo, comodidad y hospitalidad en el corazón de Honduras. Tu escapada perfecta te está esperando.</p>
+            <a href="habitaciones.html" class="btn-primary">Reservar Ahora</a>
+        </div>
+    </section>
+
+    <!-- Sección Bienvenida -->
+    <section class="bienvenida">
+        <div class="container">
+            <h2 class="section-title">Un Oasis de Tranquilidad</h2>
+            <div class="decorative-line"></div>
+            <p class="section-subtitle">Descubre un mundo de elegancia y confort en cada rincón de nuestro hotel</p>
+            <div class="welcome-grid">
+                <div class="welcome-text">
+                    <p>El Hotel Eseba se distingue como un referente de hospitalidad excepcional en Honduras.</p>
+                    
+                    <p>Nuestras instalaciones han sido cuidadosamente diseñadas para ofrecer una experiencia única que combina la calidez tradicional hondureña con las comodidades modernas que todo viajero exigente busca.</p>
+                    
+                    <p>Desde nuestras elegantes habitaciones hasta nuestros espacios comunes, cada detalle ha sido pensado para crear un ambiente acogedor donde nuestros huéspedes puedan relajarse y disfrutar de momentos inolvidables. Nuestro compromiso es hacer de su estadía una experiencia memorable.</p>
+                </div>
+                <div class="welcome-image">
+                    <div class="hotel-image"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Estadísticas -->
+    <section class="stats">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Nuestra Excelencia en Números</h2>
+            <div class="decorative-line"></div>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Huéspedes Satisfechos</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50</div>
+                    <div class="stat-label">Habitaciones de Lujo</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Servicio al Cliente</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">10+</div>
+                    <div class="stat-label">Años de Experiencia</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servicios Destacados -->
+    <section class="services">
+        <div class="container">
+            <h2 class="section-title">Nuestros Servicios</h2>
+            <div class="decorative-line"></div>
+            <p class="section-subtitle">Todo lo que necesitas para una estadía perfecta</p>
+            <div class="services-grid">
+                <article class="service-card">
+                    <div class="service-icon">🏨</div>
+                    <h3>Habitaciones de Lujo</h3>
+                    <p>Habitaciones completamente equipadas con aire acondicionado, WiFi gratuito, TV por cable y todas las comodidades modernas para garantizar su máximo confort.</p>
+                </article>
+                <article class="service-card">
+                    <div class="service-icon">🍽️</div>
+                    <h3>Restaurante Gourmet</h3>
+                    <p>Disfruta de la auténtica cocina hondureña e internacional preparada por nuestros chefs especializados con ingredientes frescos y de la más alta calidad.</p>
+                </article>
+                <article class="service-card">
+                    <div class="service-icon">🏊</div>
+                    <h3>Piscina y Spa</h3>
+                    <p>Relájate en nuestra piscina al aire libre y disfruta de tratamientos rejuvenecedores en nuestro spa con terapeutas profesionales certificados.</p>
+                </article>
+                <article class="service-card">
+                    <div class="service-icon">🚗</div>
+                    <h3>Servicios Ejecutivos</h3>
+                    <p>Centro de negocios equipado, salas de conferencias modernas y servicio de transporte premium para huéspedes corporativos y eventos especiales.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Hotel Eseba</h3>
+                    <p>Tu hogar lejos de casa en Honduras. Ofrecemos hospitalidad excepcional y servicios de primera clase para hacer de tu estadía una experiencia inolvidable que recordarás por siempre.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Información de Contacto</h3>
+                    <p>📍 Río Comayagua, Comayagua, Honduras</p>
+                    <p>📞 +504 2234-5678</p>
+                    <p>📱 +504 9876-5432</p>
+                    <p>✉️ info@hoteleseba.hn</p>
+                    <p>🌐 www.hoteleseba.hn</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href="habitaciones.html">Habitaciones</a></li>
+                        <li><a href="servicios.html">Servicios</a></li>
+                        <li><a href="galeria.html">Galería</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                        <li><a href="#reservas">Reservas Online</a></li>
+                        <li><a href="#promociones">Promociones</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Horarios de Servicio</h3>
+                    <p><strong>Recepción:</strong> 24 horas</p>
+                    <p><strong>Restaurante:</strong> 6:00 AM - 11:00 PM</p>
+                    <p><strong>Piscina:</strong> 6:00 AM - 10:00 PM</p>
+                    <p><strong>Spa:</strong> 8:00 AM - 8:00 PM</p>
+                    <p><strong>Gimnasio:</strong> 5:00 AM - 11:00 PM</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Hotel Eseba. Todos los derechos reservados. | Diseñado por Estudiantes de La Inmaculada | Política de Privacidad | Términos y Condiciones</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+
+        // Cerrar menú al hacer clic en un enlace
+        document.addEventListener('click', function(e) {
+            const navMenu = document.getElementById('navMenu');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            if (!menuToggle.contains(e.target) && !navMenu.contains(e.target)) {
+                navMenu.classList.remove('active');
+            }
+        });
+
+        // Efecto de scroll en el header(stackoverflow.com)
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'linear-gradient(135deg, #1a252f, #2c3e50)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, #2c3e50, #34495e)';
+            }
+        });
+    </script>
+</body>
+</html>

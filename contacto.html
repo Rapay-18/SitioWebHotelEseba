@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contacta con Hotel Eseba - Reservaciones, información y ubicación. Atención 24/7 en Río Comayagua, Cortés, Honduras.">
+    <meta name="keywords" content="contacto hotel Honduras, reservaciones Hotel Eseba, ubicación hotel Cortés">
+    <title>Contacto - Hotel Eseba</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        /* Header y Navegación */
+        header {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: #f39c12;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            position: relative;
+        }
+
+        nav a:hover, nav a.active {
+            color: #f39c12;
+            background-color: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            background-color: #f39c12;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover::after, nav a.active::after {
+            width: 80%;
+            left: 10%;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Sección Hero de Contacto */
+        .contact-hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.4)), 
+                        url('https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 80px;
+            position: relative;
+        }
+
+        .contact-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(243, 156, 18, 0.1), rgba(52, 73, 94, 0.1));
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.7);
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            line-height: 1.8;
+            font-style: italic;
+        }
+
+        /* Container principal */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            font-style: italic;
+            line-height: 1.8;
+        }
+
+        .decorative-line {
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #f39c12, #e67e22);
+            margin: 1rem auto 2rem;
+            border-radius: 2px;
+        }
+
+        /* Sección principal de contacto */
+        .contact-main {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #ffffff, #f8f9fa);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+
+        /* Formulario de contacto */
+        .contact-form {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-form::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #f39c12, #e67e22);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #ecf0f1;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: 'Georgia', serif;
+            transition: all 0.3s ease;
+            background-color: #fafafa;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #f39c12;
+            background-color: white;
+            box-shadow: 0 0 0 3px rgba(243, 156, 18, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            color: white;
+            padding: 1.2rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            width: 100%;
+            box-shadow: 0 6px 20px rgba(243, 156, 18, 0.4);
+        }
+
+        .btn-submit:hover {
+            background: linear-gradient(135deg, #e67e22, #d35400);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(243, 156, 18, 0.6);
+        }
+
+        /* Información de contacto */
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .info-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #f39c12, #e67e22);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .info-card:hover::before {
+            transform: translateX(0);
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .info-card h3 {
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info-card .icon {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .info-item {
+            margin-bottom: 1rem;
+            padding: 0.8rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .info-item:hover {
+            background: #ecf0f1;
+            transform: translateX(5px);
+        }
+
+        .info-item strong {
+            color: #2c3e50;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .info-item a {
+            color: #f39c12;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .info-item a:hover {
+            color: #e67e22;
+            text-decoration: underline;
+        }
+
+        /* Sección de mapa y ubicación */
+        .location-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #ecf0f1, #bdc3c7);
+        }
+
+        .location-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+            align-items: center;
+        }
+
+        .map-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #f39c12, #e67e22);
+        }
+
+        .map-placeholder {
+            width: 650px;
+            height: 350px;
+            
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        
+
+        .location-details {
+            text-align: left;
+        }
+
+        .location-details h3 {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .detail-item {
+            background: white;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .detail-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .detail-icon {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .detail-content h4 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .detail-content p {
+            color: #7f8c8d;
+            line-height: 1.6;
+        }
+
+        /* Sección de horarios y servicios */
+        .services-hours {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .service-hours-card {
+            background: rgba(255,255,255,0.1);
+            padding: 2.5rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .service-hours-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255,255,255,0.15);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .service-hours-card h3 {
+            color: #f39c12;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .hours-list {
+            list-style: none;
+        }
+
+        .hours-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .hours-list li:last-child {
+            border-bottom: none;
+        }
+
+        .hours-list strong {
+            color: #f39c12;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #1a252f, #2c3e50);
+            color: white;
+            padding: 4rem 0 2rem;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #f39c12, #e67e22, #f39c12);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            color: #f39c12;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .footer-section p, .footer-section li {
+            color: #bdc3c7;
+            line-height: 1.8;
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 0.3rem 0;
+            display: inline-block;
+        }
+
+        .footer-section a:hover {
+            color: #f39c12;
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 2px solid #34495e;
+            color: #95a5a6;
+            font-size: 0.9rem;
+        }
+
+        /* Responsividad */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: linear-gradient(135deg, #2c3e50, #34495e);
+                flex-direction: column;
+                padding: 1rem 0;
+                gap: 0;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            nav li {
+                padding: 0.8rem 2rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .contact-grid,
+            .location-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form,
+            .info-card {
+                padding: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-hero {
+                background-attachment: scroll;
+                height: 50vh;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+
+            .contact-form,
+            .info-card,
+            .service-hours-card {
+                padding: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+            }
+        }
+
+        /* Animaciones */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .contact-form,
+        .info-card,
+        .service-hours-card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Accesibilidad */
+        :focus {
+            outline: 2px solid #f39c12;
+            outline-offset: 2px;
+        }
+
+        /* Efectos especiales */
+        .success-message {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            text-align: center;
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: fadeInUp 0.5s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">Hotel Eseba</div>
+            <nav>
+                <button class="menu-toggle" onclick="toggleMenu()" aria-label="Abrir menú de navegación">☰</button>
+                <ul id="navMenu">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="habitaciones.html">Habitaciones</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="galeria.html">Galería</a></li>
+                    <li><a href="contacto.html" class="active">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero de Contacto -->
+    <section class="contact-hero">
+        <div class="hero-content">
+            <h1>Contacto y Reservaciones</h1>
+            <p>Estamos aquí para hacer de tu estadía una experiencia inolvidable. Contáctanos las 24 horas del día.</p>
+        </div>
+    </section>
+
+    <!-- Sección Principal de Contacto -->
+    <section class="contact-main">
+        <div class="container">
+            <h2 class="section-title">¿Cómo Podemos Ayudarte?</h2>
+            <div class="decorative-line"></div>
+            <p class="section-subtitle">Completa el formulario o utiliza nuestra información de contacto directo</p>
+            
+            <div class="contact-grid">
+                <!-- Formulario de Contacto -->
+                <div class="contact-form">
+                    <h3 style="color: #2c3e50; margin-bottom: 2rem; font-size: 1.6rem; text-align: center;">Formulario de Contacto</h3>
+                    <form id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="nombre">Nombre Completo</label>
+                                <input type="text" id="nombre" name="nombre" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="telefono">Teléfono</label>
+                                <input type="tel" id="telefono" name="telefono" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Correo Electrónico</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="fechaLlegada">Fecha de Llegada</label>
+                                <input type="date" id="fechaLlegada" name="fechaLlegada">
+                            </div>
+                            <div class="form-group">
+                                <label for="fechaSalida">Fecha de Salida</label>
+                                <input type="date" id="fechaSalida" name="fechaSalida">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="huespedes">Número de Huéspedes</label>
+                                <select id="huespedes" name="huespedes">
+                                    <option value="">Seleccionar...</option>
+                                    <option value="1">1 Huésped</option>
+                                    <option value="2">2 Huéspedes</option>
+                                    <option value="3">3 Huéspedes</option>
+                                    <option value="4">4 Huéspedes</option>
+                                    <option value="5+">5 o más Huéspedes</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="tipoConsulta">Tipo de Consulta</label>
+                                <select id="tipoConsulta" name="tipoConsulta" required>
+                                    <option value="">Seleccionar...</option>
+                                    <option value="reservacion">Reservación</option>
+                                    <option value="informacion">Información General</option>
+                                    <option value="eventos">Eventos y Conferencias</option>
+                                    <option value="servicios">Servicios Especiales</option>
+                                    <option value="otros">Otros</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="mensaje">Mensaje</label>
+                            <textarea id="mensaje" name="mensaje" placeholder="Cuéntanos sobre tus necesidades, preferencias especiales o cualquier pregunta que tengas..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn-submit">Enviar Mensaje</button>
+                        <div class="success-message" id="successMessage">
+                            ¡Mensaje enviado exitosamente! Te contactaremos pronto.
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Información de Contacto -->
+                <div class="contact-info">
+                    <div class="info-card">
+                        <h3><span class="icon">📞</span> Teléfonos</h3>
+                        <div class="info-item">
+                            <strong>Recepción Principal</strong>
+                            <a href="tel:+50422345678">+504 2234-5678</a>
+                        </div>
+                        <div class="info-item">
+                            <strong>Celular / WhatsApp</strong>
+                            <a href="https://wa.me/50498765432">+504 9876-5432</a>
+                        </div>
+                        <div class="info-item">
+                            <strong>Reservaciones</strong>
+                            <a href="tel:+50422341234">+504 2234-1234</a>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <h3><span class="icon">✉️</span> Correos Electrónicos</h3>
+                        <div class="info-item">
+                            <strong>Información General</strong>
+                            <a href="mailto:info@hoteleseba.hn">info@hoteleseba.hn</a>
+                        </div>
+                        <div class="info-item">
+                            <strong>Reservaciones</strong>
+                            <a href="mailto:reservas@hoteleseba.hn">reservas@hoteleseba.hn</a>
+                        </div>
+                        <div class="info-item">
+                            <strong>Eventos Corporativos</strong>
+                            <a href="mailto:eventos@hoteleseba.hn">eventos@hoteleseba.hn</a>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <h3><span class="icon">🌐</span> Redes y Web</h3>
+                        <div class="info-item">
+                            <strong>Sitio Web Oficial</strong>
+                            <a href="https://www.hoteleseba.hn" target="_blank">www.hoteleseba.hn</a>
+                        </div>
+                        <div class="info-item">
+                            <strong>Atención al Cliente</strong>
+                            Las 24 horas, los 7 días de la semana
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Ubicación y Mapa -->
+    <section class="location-section">
+        <div class="container">
+            <h2 class="section-title">Nuestra Ubicación</h2>
+            <div class="decorative-line"></div>
+            <p class="section-subtitle">Estratégicamente ubicado en el corazón de Cortés, Honduras</p>
+            
+            <div class="location-grid">
+                <div class="map-container">
+                    <div class="map-placeholder">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d188355.769664624!2d-87.95940287718011!3d14.443978694004027!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f65858c03782075%3A0xccf55efc5483df81!2sComayagua!5e1!3m2!1ses-419!2shn!4v1748836062226!5m2!1ses-419!2shn" width="650" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        
+                        <br>
+                        <small>Río Comayagua, Comayagua, Honduras</small>
+                    </div>
+                    <p><strong>Coordenadas GPS:</strong><br>
+                    Latitud: 15.5007° N<br>
+    Longitud: 87.6442° W</p>
+                    <a href="https://maps.app.goo.gl/3PMcgwqCciHXa87G6" target="_blank" 
+                       class="btn-submit" style="display: inline-block; text-decoration: none; margin-top: 1rem; width: auto; padding: 1rem 2rem;">
+                        Ver en Google Maps
+                    </a>
+                </div>
+
+                <div class="location-details">
+                    <h3>Cómo Llegar</h3>
+                    
+                    <div class="detail-item">
+                        <div class="detail-icon">📍</div>
+                        <div class="detail-content">
+                            <h4>Dirección Completa</h4>
+                            <p>Río Comayagua, Comayagua<br>
+                            Honduras, C.A.<br>
+                            Código Postal: 12101</p>
+                        </div>
+                    </div>
+
+                    <div class="detail-item">
+                        <div class="detail-icon">🚗</div>
+                        <div class="detail-content">
+                            <h4>Desde Tegucigalpa</h4>
+                            <p>Tomar CA-5 Norte hacia Comayagua (45 minutos aproximadamente). 
+                            Salida hacia Río Comayagua, seguir señalización del hotel.</p>
+                        </div>
+                    </div>
+
+                    <div class="detail-item">
+                        <div class="detail-icon">✈️</div>
+                        <div class="detail-content">
+                            <h4>Desde Aeropuerto</h4>
+                            <p>Aeropuerto Internacional Palmerola a 15 minutos en vehículo. 
+                            Servicio de transporte disponible con reservación previa.</p>
+                        </div>
+                    </div>
+
+                    <div class="detail-item">
+                        <div class="detail-icon">🚌</div>
+                        <div class="detail-content">
+                            <h4>Transporte Público</h4>
+                            <p>Buses desde terminal de Comayagua cada 30 minutos. 
+                            Parada "Hotel Eseba" directamente frente al hotel.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Horarios y Servicios -->
+    <section class="services-hours">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Horarios y Servicios</h2>
+            <div class="decorative-line"></div>
+            <p class="section-subtitle" style="color: #bdc3c7;">Información detallada sobre nuestros horarios de atención</p>
+            
+            <div class="services-grid">
+                <div class="service-hours-card">
+                    <h3>⏰ Horarios de Atención</h3>
+                    <ul class="hours-list">
+                        <li>
+                            <span>Recepción</span>
+                            <strong>24 horas</strong>
+                        </li>
+                        <li>
+                            <span>Check-in</span>
+                            <strong>3:00 PM - 11:00 PM</strong>
+                        </li>
+                        <li>
+                            <span>Check-out</span>
+                            <strong>6:00 AM - 12:00 PM</strong>
+                        </li>
+                        <li>
+                            <span>Restaurante</span>
+                            <strong>6:00 AM - 10:00 PM</strong>
+                        </li>
+                        <li>
+                            <span>Room Service</span>
+                            <strong>24 horas</strong>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="service-hours-card">
+                    <h3>📋 Servicios de Reservación</h3>
+                    <ul class="hours-list">
+                        <li>
+                            <span>Reservas Telefónicas</span>
+                            <strong>24/7</strong>
+                        </li>
+                        <li>
+                            <span>Reservas Online</span>
+                            <strong>Inmediatas</strong>
+                        </li>
+                        <li>
+                            <span>Modificaciones</span>
+                            <strong>Hasta 24h antes</strong>
+                        </li>
+                        <li>
+                            <span>Cancelaciones</span>
+                            <strong>48h sin costo</strong>
+                        </li>
+                        <li>
+                            <span>Grupo/Eventos</span>
+                            <strong>Con anticipación</strong>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="service-hours-card">
+                    <h3>🏨 Servicios del Hotel</h3>
+                    <ul class="hours-list">
+                        <li>
+                            <span>Piscina</span>
+                            <strong>6:00 AM - 10:00 PM</strong>
+                        </li>
+                        <li>
+                            <span>Gimnasio</span>
+                            <strong>24 horas</strong>
+                        </li>
+                        <li>
+                            <span>Business Center</span>
+                            <strong>6:00 AM - 11:00 PM</strong>
+                        </li>
+                        <li>
+                            <span>Lavandería</span>
+                            <strong>7:00 AM - 9:00 PM</strong>
+                        </li>
+                        <li>
+                            <span>Transporte</span>
+                            <strong>Bajo solicitud</strong>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Hotel Eseba</h3>
+                    <p>Tu destino de confort y elegancia en el corazón de Honduras. 
+                    Ofrecemos servicios de primera clase con la calidez y hospitalidad 
+                    que nos caracteriza.</p>
+                    <p><strong>Río Comayagua, Comayagua</strong><br>
+                    Honduras, Centroamérica</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="habitaciones.html">Habitaciones</a></li>
+                        <li><a href="servicios.html">Servicios</a></li>
+                        <li><a href="galeria.html">Galería</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Servicios</h3>
+                    <ul>
+                        <li><a href="#reservaciones">Reservaciones</a></li>
+                        <li><a href="#eventos">Eventos Corporativos</a></li>
+                        <li><a href="#restaurante">Restaurante</a></li>
+                        <li><a href="#spa">Spa y Bienestar</a></li>
+                        <li><a href="#transporte">Transporte</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <p>📞 <a href="tel:+50422345678">+504 2234-5678</a></p>
+                    <p>📱 <a href="https://wa.me/50498765432">+504 9876-5432</a></p>
+                    <p>✉️ <a href="mailto:info@hoteleseba.hn">info@hoteleseba.hn</a></p>
+                    <p>🌐 <a href="https://www.hoteleseba.hn">www.hoteleseba.hn</a></p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Hotel Eseba. Todos los derechos reservados. | 
+                <a href="#privacidad" style="color: #f39c12;">Política de Privacidad</a> | 
+                <a href="#terminos" style="color: #f39c12;">Términos y Condiciones</a></p>
+            </div>
+        </div>
+    </footer>
+
+    
+</body>
+</html>

@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habitaciones - Hotel Eseba</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        /* Header y Navegación */
+        header {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: #f39c12;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        nav a:hover, nav a.active {
+            color: #f39c12;
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 80px;
+        }
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            max-width: 600px;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Section Titles */
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Rooms Section */
+        .rooms-section {
+            padding: 5rem 0;
+            background-color: white;
+        }
+
+        .room-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 4rem;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .room-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .room-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            min-height: 400px;
+        }
+
+        .room-card:nth-child(even) .room-content {
+            direction: rtl;
+        }
+
+        .room-card:nth-child(even) .room-info {
+            direction: ltr;
+        }
+
+        .room-image {
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .room-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .room-info {
+            padding: 3rem;
+        }
+
+        .room-title {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .room-price {
+            font-size: 1.5rem;
+            color: #f39c12;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+
+        .room-description {
+            color: #555;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .room-features {
+            margin-bottom: 2rem;
+        }
+
+        .room-features h4 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            color: #555;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-icon {
+            color: #f39c12;
+            margin-right: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .btn-reserve {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(243, 156, 18, 0.3);
+        }
+
+        .btn-reserve:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(243, 156, 18, 0.4);
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            padding: 5rem 0;
+            background-color: #ecf0f1;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .gallery-item {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 2rem 1.5rem 1.5rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: #f39c12;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-section p, .footer-section li {
+            color: #bdc3c7;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #f39c12;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #34495e;
+            color: #95a5a6;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: linear-gradient(135deg, #2c3e50, #34495e);
+                flex-direction: column;
+                padding: 1rem 0;
+                gap: 0;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            nav li {
+                padding: 0.5rem 2rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .room-content {
+                grid-template-columns: 1fr;
+            }
+
+            .room-card:nth-child(even) .room-content {
+                direction: ltr;
+            }
+
+            .room-image {
+                height: 250px;
+            }
+
+            .room-info {
+                padding: 2rem;
+            }
+
+            .room-title {
+                font-size: 1.5rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .room-info {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">Hotel Eseba</div>
+            <nav>
+                <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+                <ul id="navMenu">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="habitaciones.html" class="active">Habitaciones</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="galeria.html">Galería</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Nuestras Habitaciones</h1>
+            <p>Descubre el confort y la elegancia en cada uno de nuestros espacios diseñados para tu comodidad</p>
+        </div>
+    </section>
+
+    <!-- Rooms Section -->
+    <section class="rooms-section">
+        <div class="container">
+            <h2 class="section-title">Tipos de Habitaciones</h2>
+            <p class="section-subtitle">Cada habitación está diseñada para ofrecerte la máxima comodidad y una experiencia única</p>
+
+            <!-- Suite Presidencial -->
+            <div class="room-card">
+                <div class="room-content">
+                    <div class="room-image" style="background-image: url('https://images.unsplash.com/photo-1590490360182-c33d57733427?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+                        <div class="room-badge">Premium</div>
+                    </div>
+                    <div class="room-info">
+                        <h3 class="room-title">Suite Presidencial</h3>
+                        <div class="room-price">$280 USD / noche</div>
+                        <p class="room-description">
+                            La máxima expresión de lujo y confort. Esta suite exclusiva cuenta con 80m² de elegancia, 
+                            sala de estar separada, jacuzzi privado y una vista panorámica espectacular de la ciudad.
+                        </p>
+                        <div class="room-features">
+                            <h4>Características:</h4>
+                            <div class="features-grid">
+                                <div class="feature-item">
+                                    <span class="feature-icon">✓</span>
+                                    <span>Jacuzzi privado</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">✓</span>
+                                    <span>Sala de estar</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">✓</span>
+                                    <span>Vista panorámica</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">✓</span>
+                                    <span>Minibar premium</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">✓</span>
+                                    <span>Servicio 24/7</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">✓</span>
+                                    <span>WiFi de alta velocidad</span>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="contacto.html" class="btn-reserve">Reservar Ahora</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Habitación Doble -->
+            <div class="room-card">
+                <div class="room-content">
+                    <div class="room-image" style="background-image: url('https://images.unsplash.com/photo-1578683010236-d716f9a3f461?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+                        <div class="room-badge">Popular</div>
+                    </div>
+                    <div class="room-info">
+                        <h3 class="room-title">Habitación Doble</h3>
+                        <div class="room-price">$120 USD / noche</div>
+                        <p class="room-description">
+                            Perfecta para parejas, esta habitación ofrece 35m² de confort con una cama king size, 
+                            balcón privado y todas las comodidades modernas para una estadía inolvidable.
+                        </p>
+                        <div class="room-features">
+                            <h4>Características:</h4>
+                            <div class="features-grid">
+                                <div class="feature-item">
+                                    <span class="feature-icon">✓</span>
+                                    <span>Cama King Size</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">✓</span>
+                                    <span>Balcón privado</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">✓</span>
+                                    <span>Aire acondicionado</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">✓</span>
+                                    <span>TV por cable</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">✓</span>
+                                    <span>Baño privado</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">✓</span>
+                                    <span>WiFi gratuito</span>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="contacto.html" class="btn-reserve">Reservar Ahora</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Habitación Sencilla -->
+            <div class="room-card">
+                <div class="room-content">
+                    <div class="room-image" style="background-image: url('https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+                        <div class="room-badge">Económica</div>
+                    </div>
+                    <div class="room-info">
+                        <h3 class="room-title">Habitación Sencilla</h3>
+                        <div class="room-price">$85 USD / noche</div>
+                        <p class="room-description">
+                            Ideal para viajeros individuales o de negocios. Con 25m² bien distribuidos, 
+                            cama queen size y un espacio de trabajo cómodo para tu comodidad y productividad.
+                        </p>
+                        <div class="room-features">
+                            <h4>Características:</h4>
+                            <div class="features-grid">
+                                <div class="feature-item">
+                                    <span class="feature-icon">✓</span>
+                                    <span>Cama Queen Size</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">✓</span>
+                                    <span>Escritorio de trabajo</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">✓</span>
+                                    <span>Aire acondicionado</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">✓</span>
+                                    <span>TV LED 32"</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">✓</span>
+                                    <span>Caja fuerte</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">✓</span>
+                                    <span>WiFi gratuito</span>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="contacto.html" class="btn-reserve">Reservar Ahora</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Habitación Familiar -->
+            <div class="room-card">
+                <div class="room-content">
+                    <div class="room-image" style="background-image: url('https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+                        <div class="room-badge">Familiar</div>
+                    </div>
+                    <div class="room-info">
+                        <h3 class="room-title">Habitación Familiar</h3>
+                        <div class="room-price">$180 USD / noche</div>
+                        <p class="room-description">
+                            Espaciosa habitación de 50m² diseñada para familias. Incluye cama king size, 
+                            litera para niños, área de juegos y todas las comodidades para una estadía familiar perfecta.
+                        </p>
+                        <div class="room-features">
+                            <h4>Características:</h4>
+                            <div class="features-grid">
+                                <div class="feature-item">
+                                    <span class="feature-icon">✓</span>
+                                    <span>Cama King + Litera</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">✓</span>
+                                    <span>Área de juegos</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">✓</span>
+                                    <span>Refrigerador</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">✓</span>
+                                    <span>TV de 42"</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">✓</span>
+                                    <span>Balcón amplio</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">✓</span>
+                                    <span>Kit de bienvenida niños</span>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="contacto.html" class="btn-reserve">Reservar Ahora</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+        <div class="container">
+            <h2 class="section-title">Galería de Habitaciones</h2>
+            <p class="section-subtitle">Explora nuestros espacios y descubre el confort que te espera</p>
+            <div class="gallery-grid">
+                <div class="gallery-item" style="background-image: url('https://plus.unsplash.com/premium_photo-1661902468735-eabf780f8ff6?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmElQzMlQjFvJTIwZGUlMjBsdWpvfGVufDB8fDB8fHww')">
+                    <div class="gallery-overlay">
+                        <h4>Baños de Lujo</h4>
+                        <p>Mármol italiano y accesorios de primera calidad</p>
+                    </div>
+                </div>
+                <div class="gallery-item" style="background-image: url('https://assets.milestoneinternet.com/cdn-cgi/image/f=auto/grand-velas-parent/vallarta-grandvelas/site-images/out-side-view-of-grand-velas-riviera-nuevo-vallarta-nayarit.jpg?width=400&height=300')">
+                    <div class="gallery-overlay">
+                        <h4>Vistas Panorámicas</h4>
+                        <p>Disfruta de las mejores vistas de la ciudad</p>
+                    </div>
+                </div>
+                <div class="gallery-item" style="background-image: url('https://hybo.app/wp-content/uploads/2018/04/10-consejos-para-gestionar-los-espacios-de-tu-oficina-min.jpg')">
+                    <div class="gallery-overlay">
+                        <h4>Espacios de Trabajo</h4>
+                        <p>Área de oficina cómoda y funcional</p>
+                    </div>
+                </div>
+                <div class="gallery-item" style="background-image: url('https://fancyhouse-design.com/wp-content/uploads/2025/02/A-Sophisticated-Bedroom-with-Balanced-Contrast-and-Textural-Depth.jpg')">
+                    <div class="gallery-overlay">
+                        <h4>Decoración Elegante</h4>
+                        <p>Diseño contemporáneo con toques tradicionales</p>
+                    </div>
+                </div>
+                <div class="gallery-item" style="background-image: url('https://curiosidades.com/wp-content/uploads/2023/07/EDT_TSQ4_21_RGB_V1-1024x767.webp')">
+                    <div class="gallery-overlay">
+                        <h4>Balcones Privados</h4>
+                        <p>Relájate en tu espacio exterior personal</p>
+                    </div>
+                </div>
+                <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1595576508898-0ad5c879a061?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80')">
+                    <div class="gallery-overlay">
+                        <h4>Comodidades Premium</h4>
+                        <p>Todo lo que necesitas para tu confort</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Hotel Eseba</h3>
+                    <p>Tu hogar lejos de casa en Honduras. Ofrecemos hospitalidad excepcional y servicios de primera clase para hacer de tu estadía una experiencia inolvidable.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <p>📍 Río Comayagua, Comayagua, Honduras</p>
+                    <p>📞 +504 2234-5678</p>
+                    <p>✉️ info@hoteleseba.hn</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href="habitaciones.html">Habitaciones</a></li>
+                        <li><a href="servicios1.html">Servicios</a></li>
+                        <li><a href="galeria.html">Galería</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Horarios</h3>
+                    <p>Recepción: 24 horas</p>
+                    <p>Restaurante: 6:00 AM - 11:00 PM</p>
+                    <p>Piscina: 6:00 AM - 10:00 PM</p>
+                    <p>Spa: 8:00 AM - 8:00 PM</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Hotel Eseba. Todos los derechos reservados. | Diseñado por Estudiantes de La Inmaculada | Política de Privacidad | Términos y Condiciones</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+
+        // Cerrar menú al hacer clic en un enlace
+        document.addEventListener('click', function(e) {
+            const navMenu = document.getElementById('navMenu');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            if (!menuToggle.contains(e.target) && !navMenu.contains(e.target)) {
+                navMenu.classList.remove('active');
+            }
+        });
+
+        // Smooth scrolling para enlaces internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Galería - Hotel Eseba</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Georgia', serif; background-color: #f8f9fa; color: #333; }
+
+    header {
+      background: linear-gradient(135deg, #2c3e50, #34495e);
+      color: white;
+      padding: 1rem 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem;
+    }
+    .logo {
+      font-size: 2.2rem;
+      font-weight: bold;
+      color: #f39c12;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      position: relative;
+    }
+    nav a:hover {
+      color: #f39c12;
+      background-color: rgba(255,255,255,0.1);
+    }
+
+    /* Menú hamburguesa (oculto por defecto) */
+    .menu-toggle {
+      display: none; 
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+      position: relative;
+      z-index: 1001;
+    }
+    .menu-toggle span {
+      width: 25px;
+      height: 3px;
+      background-color: white;
+      transition: all 0.3s ease;
+    }
+
+    /* Checkbox oculto para activar/desactivar el menú */
+    #menu-checkbox {
+      display: none;
+    }
+
+    .hero {
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), url('https://digital.ihg.com/is/image/ihg/holiday-inn-resort-panama-city-beach-8957206202-16x9');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      height: 50vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      margin-top: 80px;
+      position: relative;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      text-shadow: 3px 3px 6px rgba(0,0,0,0.7);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+    .section-title {
+      text-align: center;
+      font-size: 2.8rem;
+      color: #2c3e50;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+    .decorative-line {
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(90deg, #f39c12, #e67e22);
+      margin: 2rem auto;
+      border-radius: 2px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .gallery-item {
+      overflow: hidden;
+      border-radius: 20px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .gallery-item:hover {
+      transform: scale(1.05);
+    }
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+
+    footer {
+      background: linear-gradient(135deg, #1a252f, #2c3e50);
+      color: white;
+      padding: 4rem 0 2rem;
+      text-align: center;
+    }
+    footer p {
+      font-size: 0.9rem;
+      color: #bdc3c7;
+    }
+
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+    }
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    .lightbox:target {
+      display: flex;
+    }
+    .close {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      color: white;
+      font-size: 2rem;
+      text-decoration: none;
+      background: rgba(0,0,0,0.5);
+      padding: 0.3rem 0.8rem;
+      border-radius: 50%;
+      transition: background 0.3s;
+    }
+    .close:hover {
+      background: rgba(0,0,0,0.8);
+    }
+
+    @media (max-width: 432px) {
+      .header-container {
+        padding: 0 1.5rem;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      /* Ocultar la navegación */
+      nav ul {
+        display: none; 
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 80px; 
+        left: 0;
+        background: linear-gradient(135deg, #2c3e50, #34495e);
+        box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+        padding: 1rem 0;
+      }
+      nav ul li {
+        text-align: center;
+        margin: 0.5rem 0;
+      }
+      nav a {
+        padding: 0.8rem 1rem;
+        display: block;
+      }
+
+      
+      #menu-checkbox:checked ~ #nav-list {
+        display: flex;
+      }
+
+      .hero {
+        height: 40vh;
+        margin-top: 60px; 
+        background-attachment: scroll;
+      }
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .section-title {
+        font-size: 2rem;
+      }
+      .gallery-grid {
+        grid-template-columns: 1fr; 
+        gap: 1.5rem;
+      }
+      .container {
+        padding: 2rem 1rem;
+      }
+      footer {
+        padding: 2rem 0 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .logo {
+        font-size: 1.5rem;
+      }
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      .section-title {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <div class="logo">Hotel Eseba</div>
+      <nav>
+        <input type="checkbox" id="menu-checkbox">
+        <label for="menu-checkbox" class="menu-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </label>
+        <ul id="nav-list">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="habitaciones.html">Habitaciones</a></li>
+          <li><a href="servicios.html">Servicios</a></li>
+          <li><a href="galeria.html">Galería</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <h1>Descubre Nuestro Hotel</h1>
+  </section>
+
+  <section class="container">
+    <h2 class="section-title">Visítanos!</h2>
+    <div class="decorative-line"></div>
+    <div class="gallery-grid">
+      <a href="#img1" class="gallery-item">
+        <img src="https://s3.amazonaws.com/arc-wordpress-client-uploads/infobae-wp/wp-content/uploads/2019/05/20152251/Dorado-Beach-a-Ritz-Carlton-Reserve-3.jpg" alt="Habitación de Lujo"/>
+      </a>
+      <a href="#img2" class="gallery-item">
+        <img src="https://media.istockphoto.com/id/1418784247/es/foto/lobby-del-hotel-de-lujo.jpg?s=612x612&w=0&k=20&c=DUaM_aN8lXyCsH7sGFAXXxFsS1D9qGVCcv_2kNuuu1E=" alt="Lobby del Hotel"/>
+      </a>
+      <a href="#img3" class="gallery-item">
+        <img src="https://hoteles-cuenca.com/wp-content/uploads/2021/05/hoteles-cuenca-con-piscinas.jpg" alt="Piscina del Hotel"/>
+      </a>
+      <a href="#img4" class="gallery-item">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSx3Fuv8HadCN7rEJtgVLuoSVoncPTWEuxovw&s" alt="Spa del Hotel"/>
+      </a>
+      <a href="#img5" class="gallery-item">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5_aOJd993jzwtDjSwpsEKiJ_Zvt6CHgJW_g&s" alt="Restaurante del Hotel"/>
+      </a>
+      <a href="#img6" class="gallery-item">
+        <img src="https://media-cdn.tripadvisor.com/media/photo-s/11/eb/15/48/vista-panoramica-del.jpg" alt="Vista del Hotel"/>
+      </a>
+    </div>
+  </section>
+
+  <div id="img1" class="lightbox">
+    <a href="#" class="close">&times;</a>
+    <img src="https://s3.amazonaws.com/arc-wordpress-client-uploads/infobae-wp/wp-content/uploads/2019/05/20152251/Dorado-Beach-a-Ritz-Carlton-Reserve-3.jpg" alt="Habitación de Lujo Ampliada"/>
+  </div>
+  <div id="img2" class="lightbox">
+    <a href="#" class="close">&times;</a>
+    <img src="https://media.istockphoto.com/id/1418784247/es/foto/lobby-del-hotel-de-lujo.jpg?s=612x612&w=0&k=20&c=DUaM_aN8lXyCsH7sGFAXXxFsS1D9qGVCcv_2kNuuu1E=" alt="Lobby del Hotel Ampliado"/>
+  </div>
+  <div id="img3" class="lightbox">
+    <a href="#" class="close">&times;</a>
+    <img src="https://hoteles-cuenca.com/wp-content/uploads/2021/05/hoteles-cuenca-con-piscinas.jpg" alt="Piscina del Hotel Ampliada"/>
+  </div>
+  <div id="img4" class="lightbox">
+    <a href="#" class="close">&times;</a>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSx3Fuv8HadCN7rEJtgVLuoSVoncPTWEuxovw&s" alt="Spa del Hotel Ampliada"/>
+  </div>
+  <div id="img5" class="lightbox">
+    <a href="#" class="close">&times;</a>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5_aOJd993jzwtDjSwpsEKiJ_Zvt6CHgJW_g&s" alt="Restaurante del Hotel Ampliado"/>
+  </div>
+  <div id="img6" class="lightbox">
+    <a href="#" class="close">&times;</a>
+    <img src="https://media-cdn.tripadvisor.com/media/photo-s/11/eb/15/48/vista-panoramica-del.jpg" alt="Vista Panorámica del Hotel Ampliada"/>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Hotel Eseba. Todos los derechos reservados. | Diseñado por Estudiantes de La Inmaculada | Política de Privacidad | Términos y Condiciones</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Hotel Eseba - Servicios completos: restaurante gourmet, spa de lujo, gimnasio moderno, business center y más. Experiencia premium en Honduras.">
+    <meta name="keywords" content="servicios hotel Honduras, restaurante, spa, gimnasio, business center, Hotel Eseba">
+    <title>Hotel Eseba - Servicios Premium</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        /* Header y Navegación */
+        header {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: #f39c12;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            position: relative;
+        }
+
+        nav a:hover, nav a.active {
+            color: #f39c12;
+            background-color: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            background-color: #f39c12;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover::after, nav a.active::after {
+            width: 80%;
+            left: 10%;
+        }
+
+        /* Menú móvil mejorado */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .nav-checkbox {
+            display: none;
+        }
+
+        /* Hero Section para Servicios */
+        .hero-services {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.4)), 
+                        url('https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 80px;
+            position: relative;
+        }
+
+        .hero-services::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(243, 156, 18, 0.15), rgba(52, 73, 94, 0.15));
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.7);
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            line-height: 1.8;
+            font-style: italic;
+        }
+
+        /* Container principal */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Títulos de sección */
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            font-style: italic;
+            line-height: 1.8;
+        }
+
+        .decorative-line {
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #f39c12, #e67e22);
+            margin: 2rem auto;
+            border-radius: 2px;
+        }
+
+        /* Servicios principales */
+        .services-main {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #ffffff, #f8f9fa);
+        }
+
+        .service-section {
+            margin-bottom: 6rem;
+            position: relative;
+        }
+
+        .service-header {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+
+        .service-header.reverse {
+            grid-template-columns: 2fr 1fr;
+        }
+
+        .service-image {
+            width: 100%;
+            height: 350px;
+            border-radius: 20px;
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .service-image:hover {
+            transform: scale(1.02);
+        }
+
+        .service-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(243, 156, 18, 0.1), rgba(52, 73, 94, 0.1));
+        }
+
+        /* Imágenes específicas corregidas */
+        .restaurant-bg { 
+            background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); 
+        }
+        .spa-bg { 
+            background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); 
+        }
+        .gym-bg { 
+            background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); 
+        }
+        .business-bg { 
+            background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); 
+        }
+
+        .service-info {
+            padding: 2rem 0;
+        }
+
+        .service-title {
+            font-size: 2.2rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            box-shadow: 0 8px 20px rgba(243, 156, 18, 0.3);
+        }
+
+        .service-description {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .service-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .detail-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-left: 4px solid #f39c12;
+            transition: all 0.3s ease;
+        }
+
+        .detail-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .detail-card h4 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .detail-card p {
+            color: #7f8c8d;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Horarios destacados */
+        .schedule-section {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 4rem 0;
+            margin: 4rem 0;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .schedule-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #f39c12, #e67e22, #f39c12);
+        }
+
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .schedule-card {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .schedule-card:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateY(-5px);
+        }
+
+        .schedule-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: white;
+            font-size: 1.8rem;
+            box-shadow: 0 8px 20px rgba(243, 156, 18, 0.3);
+        }
+
+        .schedule-card h3 {
+            color: #f39c12;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .schedule-time {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .schedule-note {
+            font-size: 0.9rem;
+            color: #bdc3c7;
+            font-style: italic;
+        }
+
+        /* Servicios adicionales */
+        .additional-services {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #ecf0f1, #bdc3c7);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #f39c12, #e67e22);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover::before {
+            transform: translateX(0);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+        }
+
+        .service-card .service-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+        }
+
+        .service-card h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .service-card p {
+            color: #7f8c8d;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #1a252f, #2c3e50);
+            color: white;
+            padding: 4rem 0 2rem;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #f39c12, #e67e22, #f39c12);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            color: #f39c12;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .footer-section p, .footer-section li {
+            color: #bdc3c7;
+            line-height: 1.8;
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #f39c12;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 2px solid #34495e;
+            color: #95a5a6;
+            font-size: 0.9rem;
+        }
+
+        /* Responsividad */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            /* Navegación móvil con checkbox */
+            .nav-checkbox:checked ~ nav ul {
+                display: flex;
+            }
+
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: linear-gradient(135deg, #2c3e50, #34495e);
+                flex-direction: column;
+                padding: 1rem 0;
+                gap: 0;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            }
+
+            nav li {
+                padding: 0.8rem 2rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .service-header,
+            .service-header.reverse {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .service-title {
+                font-size: 1.8rem;
+            }
+
+            .service-details {
+                grid-template-columns: 1fr;
+            }
+
+            .schedule-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-services {
+                background-attachment: scroll;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .service-title {
+                font-size: 1.5rem;
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .service-card {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Efectos hover mejorados */
+        .logo:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+        }
+
+        :focus {
+            outline: 2px solid #f39c12;
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">Hotel Eseba</a>
+            <input type="checkbox" id="nav-toggle" class="nav-checkbox">
+            <label for="nav-toggle" class="menu-toggle">☰</label>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="habitaciones.html">Habitaciones</a></li>
+                    <li><a href="servicios.html" class="active">Servicios</a></li>
+                    <li><a href="galeria.html">Galería</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-services">
+        <div class="hero-content">
+            <h1>Servicios Premium</h1>
+            <p>Descubre una experiencia completa de lujo y comodidad con nuestros servicios de clase mundial</p>
+        </div>
+    </section>
+
+    <!-- Servicios Principales -->
+    <section class="services-main">
+        <div class="container">
+            <!-- Restaurante Gourmet -->
+            <div class="service-section">
+                <div class="service-header">
+                    <div class="service-image restaurant-bg"></div>
+                    <div class="service-info">
+                        <h2 class="service-title">
+                            <div class="service-icon">🍽️</div>
+                            Restaurante Gourmet
+                        </h2>
+                        <p class="service-description">
+                            Experimenta una fusión perfecta entre la auténtica cocina hondureña y los sabores internacionales más exquisitos. Nuestros chefs expertos utilizan ingredientes frescos locales y técnicas culinarias de vanguardia para crear platos únicos que deleitan todos los sentidos.
+                        </p>
+                        <div class="service-details">
+                            <div class="detail-card">
+                                <h4>🌟 Especialidades</h4>
+                                <p>Cocina hondureña tradicional, mariscos frescos, carnes premium y opciones vegetarianas gourmet</p>
+                            </div>
+                            <div class="detail-card">
+                                <h4>🍷 Bar Premium</h4>
+                                <p>Carta de vinos selectos, cócteles artesanales y bebidas tradicionales hondureñas</p>
+                            </div>
+                            <div class="detail-card">
+                                <h4>👨‍🍳 Chef Ejecutivo</h4>
+                                <p>Dirigido por chef con experiencia internacional y especialización en cocina centroamericana</p>
+                            </div>
+                            <div class="detail-card">
+                                <h4>🎉 Eventos Especiales</h4>
+                                <p>Menús personalizados para celebraciones, cenas románticas y eventos corporativos</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Spa de Lujo -->
+            <div class="service-section">
+                <div class="service-header reverse">
+                    <div class="service-info">
+                        <h2 class="service-title">
+                            <div class="service-icon">🧘‍♀️</div>
+                            Spa & Wellness Center
+                        </h2>
+                        <p class="service-description">
+                            Sumérgete en un oasis de relajación y bienestar donde cada tratamiento está diseñado para renovar tu cuerpo y espíritu. Nuestro spa combina técnicas ancestrales con terapias modernas, ofreciendo una experiencia holística de rejuvenecimiento total.
+                        </p>
+                        <div class="service-details">
+                            <div class="detail-card">
+                                <h4>💆‍♀️ Masajes Terapéuticos</h4>
+                                <p>Sueco, piedras calientes, aromaterapia, reflexología y masajes deportivos</p>
+                            </div>
+                            <div class="detail-card">
+                                <h4>🌿 Tratamientos Faciales</h4>
+                                <p>Limpieza profunda, anti-edad, hidratación intensiva con productos orgánicos</p>
+                            </div>
+                            <div class="detail-card">
+                                <h4>🛁 Hidroterapia</h4>
+                                <p>Jacuzzi, sauna, baño de vapor y piscina terapéutica con agua mineralizada</p>
+                            </div>
+                            <div class="detail-card">
+                                <h4>🧘 Yoga & Meditación</h4>
+                                <p>Clases grupales y sesiones privadas en espacios diseñados para la serenidad</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-image spa-bg"></div>
+                </div>
+            </div>
+
+            <!-- Gimnasio Moderno -->
+            <div class="service-section">
+                <div class="service-header">
+                    <div class="service-image gym-bg"></div>
+                    <div class="service-info">
+                        <h2 class="service-title">
+                            <div class="service-icon">💪</div>
+                            Gimnasio & Fitness
+                        </h2>
+                        <p class="service-description">
+                            Mantén tu rutina de ejercicio en nuestro gimnasio completamente equipado con tecnología de última generación. Diseñado para satisfacer desde principiantes hasta atletas profesionales, ofrecemos un ambiente motivador para alcanzar tus objetivos fitness.
+                        </p>
+                        <div class="service-details">
+                            <div class="detail-card">
+                                <h4>🏋️‍♂️ Equipos Premium</h4>
+                                <p>Máquinas cardiovasculares, pesas libres, equipos funcionales de marcas reconocidas</p>
+                            </div>
+                            <div class="detail-card">
+                                <h4>👨‍🏫 Entrenadores Certificados</h4>
+                                <p>Personal trainers calificados disponibles para sesiones personalizadas</p>
+                            </div>
+                            <div class="detail-card">
+                                <h4>🏊‍♀️ Piscina Olímpica</h4>
+                                <p>25 metros, temperatura controlada, perfecta para natación recreativa y deportiva</p>
+                            </div>
+                            <div class="detail-card">
+                                <h4>🎾 Actividades Grupales</h4>
+                                <p>Aqua aeróbicos, spinning, pilates y clases de baile en horarios flexibles</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Business Center -->
+            <div class="service-section">
+                <div class="service-header reverse">
+                    <div class="service-info">
+                        <h2 class="service-title">
+                            <div class="service-icon">💼</div>
+                            Business Center
+                        </h2>
+                        <p class="service-description">
+                            Espacio profesional diseñado para el ejecutivo moderno que requiere mantener su productividad durante su estadía. Equipado con tecnología avanzada y servicios de soporte completos para garantizar el éxito de sus reuniones y presentaciones de negocios.
+                        </p>
+                        <div class="service-details">
+                            <div class="detail-card">
+                                <h4>🏢 Salas de Conferencias</h4>
+                                <p>Capacidad para 2-50 personas, equipadas con proyectores y sistemas audiovisuales</p>
+                            </div>
+                            <div class="detail-card">
+                                <h4>💻 Oficinas Privadas</h4>
+                                <p>Espacios de trabajo individuales con internet de alta velocidad y mobiliario ergonómico</p>
+                            </div>
+                            <div class="detail-card">
+                                <h4>📞 Servicios Secretariales</h4>
+                                <p>Asistencia administrativa, traducción, impresión y servicios de mensajería</p>
+                            </div>
+                            <div class="detail-card">
+                                <h4>🍽️ Catering Ejecutivo</h4>
+                                <p>Servicio de comidas y bebidas para reuniones y eventos corporativos</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-image business-bg"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Horarios de Servicio -->
+    <section class="schedule-section">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Horarios de Atención</h2>
+            <div class="decorative-line"></div>
+            <p class="section-subtitle" style="color: #bdc3c7;">Nuestros servicios están disponibles en horarios diseñados para tu comodidad</p>
+            
+            <div class="schedule-grid">
+                <div class="schedule-card">
+                    <div class="schedule-icon">🏨</div>
+                    <h3>Recepción</h3>
+                    <div class="schedule-time">24 Horas</div>
+                    <p class="schedule-note">Atención continua todos los días del año</p>
+                </div>
+                
+                <div class="schedule-card">
+                    <div class="schedule-icon">🍽️</div>
+                    <h3>Restaurante</h3>
+                    <div class="schedule-time">6:00 AM - 11:00 PM</div>
+                    <p class="schedule-note">Desayuno: 6:00-10:00 AM<br>Almuerzo: 12:00-3:00 PM<br>Cena: 6:00-11:00 PM</p>
+                </div>
+                
+                <div class="schedule-card">
+                    <div class="schedule-icon">🧘‍♀️</div>
+                    <h3>Spa</h3>
+                    <div class="schedule-time">8:00 AM - 8:00 PM</div>
+                    <p class="schedule-note">Reservas recomendadas con 24h de anticipación</p>
+                </div>
+                
+                <div class="schedule-card">
+                    <div class="schedule-icon">💪</div>
+                    <h3>Gimnasio</h3>
+                    <div class="schedule-time">5:00 AM - 11:00 PM</div>
+                    <p class="schedule-note">Acceso con llave electrónica proporcionada en recepción</p>
+                </div>
+                <div class="schedule-card">
+                    <div class="schedule-icon">🏊‍♀️</div>
+                    <h3>Piscina</h3>
+                    <div class="schedule-time">6:00 AM - 10:00 PM</div>
+                    <p class="schedule-note">Acceso libre para huéspedes. Toallas disponibles en recepción</p>
+                </div>
+                
+                <div class="schedule-card">
+                    <div class="schedule-icon">💼</div>
+                    <h3>Business Center</h3>
+                    <div class="schedule-time">7:00 AM - 9:00 PM</div>
+                    <p class="schedule-note">Reservas disponibles para salas de reuniones y oficinas privadas</p>
+                </div>
+            </div>
+            
+            
+        </div>
+        
+    </section>
+
+    <!-- Servicios Adicionales -->
+    <section class="additional-services">
+        <div class="container">
+            <h2 class="section-title">Servicios Adicionales</h2>
+            <div class="decorative-line"></div>
+            <p class="section-subtitle">Complementa tu estadía con servicios diseñados para tu confort y conveniencia</p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🧺</div>
+                    <h3>Lavandería Express</h3>
+                    <p>Servicio de lavado y planchado con entrega en menos de 24 horas.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🚗</div>
+                    <h3>Alquiler de Vehículos</h3>
+                    <p>Variedad de autos disponibles con seguros y asistencia 24/7.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🛍️</div>
+                    <h3>Tiendas & Souvenirs</h3>
+                    <p>Productos artesanales, recuerdos y artículos esenciales a tu disposición.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">👶</div>
+                    <h3>Servicio de Niñera</h3>
+                    <p>Personal calificado para el cuidado de niños durante el día o la noche.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🛎️</div>
+                    <h3>Servicio a la Habitación</h3>
+                    <p>Menú exclusivo disponible las 24 horas, directo a tu puerta.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🧳</div>
+                    <h3>Custodia de Equipaje</h3>
+                    <p>Guarda tus pertenencias antes del check-in o después del check-out con total seguridad.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🚌</div>
+                    <h3>Transporte al Aeropuerto</h3>
+                    <p>Servicio de traslado cómodo y puntual desde y hacia el aeropuerto.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🩺</div>
+                    <h3>Atención Médica</h3>
+                    <p>Asistencia médica básica disponible y contacto directo con clínicas cercanas.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📶</div>
+                    <h3>Wi-Fi de Alta Velocidad</h3>
+                    <p>Conexión gratuita y estable en todo el hotel para tus reuniones, ocio o streaming sin interrupciones.</p>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Hotel Eseba</h3>
+                    <p>Comprometidos con brindar servicios de la más alta calidad para hacer de cada estadía una experiencia inolvidable. Nuestro equipo está dedicado a superar sus expectativas en cada detalle.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Información de Contacto</h3>
+                    <p>📍 Río Comayagua, Comayagua, Honduras</p>
+                    <p>📞 +504 2234-5678</p>
+                    <p>📱 +504 9876-5432</p>
+                    <p>✉️ servicios@hoteleseba.hn</p>
+                    <p>🌐 www.hoteleseba.hn</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Reservas y Servicios</h3>
+                    <ul>
+                        <li><a href="habitaciones.html">Reservar Habitación</a></li>
+                        <li><a href="#restaurante">Reservar Mesa</a></li>
+                        <li><a href="#spa">Citas Spa</a></li>
+                        <li><a href="#eventos">Eventos Especiales</a></li>
+                        <li><a href="contacto.html">Atención al Cliente</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Políticas de Servicio</h3>
+                    <p><strong>Check-in:</strong> 3:00 PM</p>
+                    <p><strong>Check-out:</strong> 12:00 PM</p>
+                    <p><strong>Cancelaciones:</strong> 24 horas previas</p>
+                    <p><strong>Mascotas:</strong> Política pet-friendly</p>
+                    <p><strong>Niños:</strong> Menores de 12 años gratis</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy;2025 Hotel Eseba. Todos los derechos reservados. | Diseñado por Estudiantes de La Inmaculada | Política de Privacidad | Términos y Condiciones</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
