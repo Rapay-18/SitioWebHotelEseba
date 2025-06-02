@@ -40,6 +40,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 0 2rem;
+            position: relative;
         }
 
         .logo {
@@ -54,6 +55,43 @@
             transform: scale(1.05);
         }
 
+        /* Checkbox oculto para controlar el menú */
+        #menu-toggle {
+            display: none;
+        }
+
+        /* Estilos del botón hamburguesa */
+        .menu-toggle-label {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+
+        .menu-toggle-label span {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 3px 0;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        /* Animación del botón hamburguesa cuando está activo */
+        #menu-toggle:checked ~ .menu-toggle-label span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        #menu-toggle:checked ~ .menu-toggle-label span:nth-child(2) {
+            opacity: 0;
+        }
+
+        #menu-toggle:checked ~ .menu-toggle-label span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        /* Navegación principal */
         nav ul {
             display: flex;
             list-style: none;
@@ -90,15 +128,6 @@
         nav a:hover::after, nav a.active::after {
             width: 80%;
             left: 10%;
-        }
-
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
         }
 
         /* Sección Hero de Contacto */
@@ -412,9 +441,9 @@
         }
 
         .map-placeholder {
-            width: 650px;
+            width: 100%;
+            max-width: 650px;
             height: 350px;
-            
             border-radius: 15px;
             display: flex;
             align-items: center;
@@ -427,7 +456,11 @@
             overflow: hidden;
         }
 
-        
+        .map-placeholder iframe {
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+        }
 
         .location-details {
             text-align: left;
@@ -602,31 +635,58 @@
             font-size: 0.9rem;
         }
 
-        /* Responsividad */
+        /* Estilos móviles con técnica del checkbox */
         @media (max-width: 768px) {
-            .menu-toggle {
-                display: block;
+            .menu-toggle-label {
+                display: flex;
             }
 
             nav ul {
-                display: none;
                 position: absolute;
                 top: 100%;
                 left: 0;
                 width: 100%;
                 background: linear-gradient(135deg, #2c3e50, #34495e);
                 flex-direction: column;
-                padding: 1rem 0;
+                padding: 0;
                 gap: 0;
                 box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                max-height: 0;
+                overflow: hidden;
+                opacity: 0;
+                transition: all 0.4s ease;
+                transform: translateY(-10px);
             }
 
-            nav ul.active {
-                display: flex;
+            /* Cuando el checkbox está marcado, mostrar el menú */
+            #menu-toggle:checked ~ nav ul {
+                max-height: 350px;
+                opacity: 1;
+                padding: 1rem 0;
+                transform: translateY(0);
             }
 
             nav li {
-                padding: 0.8rem 2rem;
+                padding: 0;
+                margin: 0;
+            }
+
+            nav a {
+                display: block;
+                padding: 1rem 2rem;
+                margin: 0;
+                border-radius: 0;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+                transition: all 0.3s ease;
+            }
+
+            nav a:hover {
+                background-color: rgba(243, 156, 18, 0.2);
+                transform: translateX(10px);
+            }
+
+            nav a::after {
+                display: none;
             }
 
             .hero-content h1 {
@@ -664,6 +724,10 @@
             .container {
                 padding: 0 1rem;
             }
+
+            .map-placeholder {
+                max-width: 100%;
+            }
         }
 
         @media (max-width: 480px) {
@@ -679,6 +743,14 @@
 
             .section-title {
                 font-size: 1.6rem;
+            }
+
+            .header-container {
+                padding: 0 1rem;
+            }
+
+            .logo {
+                font-size: 1.8rem;
             }
         }
 
@@ -728,9 +800,19 @@
     <header>
         <div class="header-container">
             <div class="logo">Hotel Eseba</div>
+            
+            <!-- Checkbox oculto para controlar el menú -->
+            <input type="checkbox" id="menu-toggle">
+            
+            <!-- Label que actúa como botón hamburguesa -->
+            <label for="menu-toggle" class="menu-toggle-label" aria-label="Abrir menú de navegación">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+            
             <nav>
-                <button class="menu-toggle" onclick="toggleMenu()" aria-label="Abrir menú de navegación">☰</button>
-                <ul id="navMenu">
+                <ul>
                     <li><a href="index.html">Inicio</a></li>
                     <li><a href="habitaciones.html">Habitaciones</a></li>
                     <li><a href="servicios.html">Servicios</a></li>
